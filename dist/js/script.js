@@ -266,17 +266,21 @@
       const thisWidget = this;
 
       thisWidget.input.addEventListener('change', function () {
-        setValue(thisWidget.input.value);
+        thisWidget.setValue(thisWidget.input.value);
       });
 
       thisWidget.linkDecrease.addEventListener('click', function (event) {
         event.preventDefault;
-        return thisWidget.setValue(thisWidget.value - 1);
+        if (thisWidget.value >= settings.amountWidget.defaultMin) {
+          return thisWidget.setValue(thisWidget.value - 1);
+        }
       });
 
       thisWidget.linkIncrease.addEventListener('click', function (event) {
         event.preventDefault;
-        return thisWidget.setValue(thisWidget.value + 1);
+        if (thisWidget.value <= settings.amountWidget.defaultMax) {
+          return thisWidget.setValue(thisWidget.value + 1);
+        }
       });
     }
   }
