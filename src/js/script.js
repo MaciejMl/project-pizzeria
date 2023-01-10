@@ -416,6 +416,8 @@
         select.cart.toggleTrigger
       );
 
+      thisCart.dom.productList = element.querySelector(select.cart.productList);
+
       thisCart.dom.wrapper = element;
     }
 
@@ -427,8 +429,11 @@
     }
 
     add(menuProduct) {
-      // const thisCart = this;
+      const thisCart = this;
 
+      const generatedHTML = templates.cartProduct(menuProduct);
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      thisCart.dom.productList.appendChild(generatedDOM);
       console.log('adding product', menuProduct);
     }
   }
