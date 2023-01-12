@@ -270,12 +270,10 @@
     addToCart() {
       const thisProduct = this;
 
-      app.cart.add(
-        thisProduct.prepareCartProduct(thisProduct.prepareCartProductParams())
-      );
+      app.cart.add(thisProduct.prepareCartProduct());
     }
 
-    prepareCartProduct(params) {
+    prepareCartProduct() {
       const thisProduct = this;
 
       const productSummary = {};
@@ -286,7 +284,7 @@
       productSummary.price =
         thisProduct.priceSingle * thisProduct.amountWidget.value;
       //productSummary.params = {};
-      productSummary.params = params;
+      productSummary.params = thisProduct.prepareCartProductParams();
 
       return productSummary;
     }
@@ -418,6 +416,16 @@
 
       thisCart.dom.productList = element.querySelector(select.cart.productList);
 
+      thisCart.dom.deliveryFee = element.querySelector(select.cart.deliveryFee);
+
+      thisCart.dom.subtotalPrice = element.querySelector(
+        select.cart.subtotalPrice
+      );
+
+      thisCart.dom.totalPrice = element.querySelector(select.cart.totalPrice);
+
+      thisCart.dom.totalNumber = element.querySelector(select.cart.totalNumber);
+
       thisCart.dom.wrapper = element;
     }
 
@@ -434,10 +442,7 @@
       let totalNumber = 0;
       let subtotalPrice = 0;
 
-      //thisCart.price = thisCart.priceSingle * thisCart.amount;
-
       for (let product of thisCart.products) {
-        //product.amount = totalNumber++;
         totalNumber += product.amount;
         subtotalPrice += product.price;
       }
@@ -446,6 +451,7 @@
       }
       if (totalNumber > 0) {
         thisCart.totalPrice = subtotalPrice + deliveryFee;
+        thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
       } else {
         deliveryFee = 0;
       }
@@ -453,6 +459,9 @@
         'prod:',
         `${totalNumber},$${subtotalPrice}, total:${thisCart.totalPrice}`
       );
+      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+      thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
+      // thisCart.dom.totalNumber.innerHTML = thisCart.amount;
     }
 
     add(menuProduct) {
