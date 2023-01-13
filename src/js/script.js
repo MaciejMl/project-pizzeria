@@ -328,8 +328,9 @@
       const thisWidget = this;
 
       thisWidget.getElements(element);
-      //thisWidget.setValue(settings.amountWidget.defaultValue);
-      thisWidget.setValue(thisWidget.input.value);
+      thisWidget.setValue(
+        thisWidget.input.value || settings.amountWidget.defaultValue
+      );
       thisWidget.initActions();
 
       console.log('AmountWidget:', thisWidget);
@@ -443,6 +444,10 @@
       thisCart.dom.productList.addEventListener('updated', function () {
         thisCart.update();
       });
+
+      thisCart.dom.productList.addEventListener('remove', function () {
+        thisCart.remove(event.detail.cartProduct);
+      });
     }
 
     update() {
@@ -469,8 +474,9 @@
       );
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
       thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
-      thisCart.dom.totalPrice[0].innerHTML = thisCart.totalPrice;
-      thisCart.dom.totalPrice[1].innerHTML = thisCart.totalPrice;
+      for (let totprice of thisCart.dom.totalPrice) {
+        totprice.innerHTML = thisCart.totalPrice;
+      }
       thisCart.dom.totalNumber.innerHTML = totalNumber;
     }
 
@@ -484,6 +490,16 @@
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       console.log('thisCart.products', thisCart.products);
+      thisCart.update();
+    }
+
+    remove(instProduct) {
+      const thisCart = this;
+      const indexOfProduct = thisCart.products.indexOf(instProduct);
+      thisCart.products.splice(indexOfProduct, 1);
+
+      thisCart.dom.productList.remove();
+
       thisCart.update();
     }
   }
@@ -500,7 +516,7 @@
 
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
-      thisCartProduct.productPriceInCart();
+      //thisCartProduct.productPriceInCart();
       thisCartProduct.initActions();
       //console.log('cartProduct', thisCartProduct);
     }
@@ -524,9 +540,10 @@
 
     productPriceInCart() {
       const thisCartProduct = this;
-
-      thisCartProduct.dom.price.innerHTML =
-        thisCartProduct.priceSingle * thisCartProduct.amountWidget.value;
+      thisCartProduct.amount = thisCartProduct.amountWidget.value;
+      thisCartProduct.price =
+        thisCartProduct.amount * thisCartProduct.priceSingle;
+      thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
     }
 
     initAmountWidget() {
@@ -562,7 +579,7 @@
       thisCartProduct.dom.remove.addEventListener('click', function (event) {
         event.preventDefault;
         thisCartProduct.remove();
-        console.log(thisCartProduct.remove());
+        //console.log(thisCartProduct.remove());
       });
     }
   }
