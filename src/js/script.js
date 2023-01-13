@@ -493,14 +493,16 @@
       thisCart.update();
     }
 
-    remove(instProduct) {
+    remove(arg) {
       const thisCart = this;
-      const indexOfProduct = thisCart.products.indexOf(instProduct);
-      thisCart.products.splice(indexOfProduct, 1);
+
+      const prodIndex = thisCart.products.indexOf(arg);
+      thisCart.products.splice(prodIndex, 1);
 
       thisCart.dom.productList.remove();
 
       thisCart.update();
+      console.log(thisCart.products);
     }
   }
 
