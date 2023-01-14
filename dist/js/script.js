@@ -445,7 +445,7 @@
         thisCart.update();
       });
 
-      thisCart.dom.productList.addEventListener('remove', function () {
+      thisCart.dom.productList.addEventListener('remove', function (event) {
         thisCart.remove(event.detail.cartProduct);
       });
     }
@@ -499,10 +499,8 @@
       const prodIndex = thisCart.products.indexOf(arg);
       thisCart.products.splice(prodIndex, 1);
 
-      thisCart.dom.productList.remove();
-
+      thisCart.dom.productList.children[prodIndex].remove();
       thisCart.update();
-      console.log(thisCart.products);
     }
   }
 
@@ -580,7 +578,7 @@
       });
       thisCartProduct.dom.remove.addEventListener('click', function (event) {
         event.preventDefault;
-        thisCartProduct.remove();
+        thisCartProduct.remove(event.detail.cartProduct);
         //console.log(thisCartProduct.remove());
       });
     }
