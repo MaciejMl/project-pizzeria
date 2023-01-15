@@ -484,6 +484,22 @@
         payload.products.push(prod.getData());
       }
       console.log(payload);
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+
+      fetch(url, options)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (parseResponse) {
+          console.log('parseResponse', parseResponse);
+        });
     }
 
     update() {
