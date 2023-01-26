@@ -11,7 +11,7 @@ class Cart {
     thisCart.getElements(element);
     thisCart.initActions();
 
-    console.log('new Cart', thisCart);
+    // console.log('new Cart', thisCart);
   }
 
   getElements(element) {
@@ -81,7 +81,7 @@ class Cart {
     for (let prod of thisCart.products) {
       payload.products.push(prod.getData());
     }
-    console.log(payload);
+    //console.log(payload);
 
     const options = {
       method: 'POST',
@@ -96,7 +96,7 @@ class Cart {
         return response.json();
       })
       .then(function (parseResponse) {
-        console.log('parseResponse', parseResponse);
+        //  console.log('parseResponse', parseResponse);
       });
   }
 
@@ -118,10 +118,10 @@ class Cart {
     } else {
       deliveryFee = 0;
     }
-    console.log(
-      'prod:',
-      `${thisCart.totalNumber},$${thisCart.subtotalPrice}, total:${thisCart.totalPrice}`
-    );
+    // console.log(
+    //   'prod:',
+    //   `${thisCart.totalNumber},$${thisCart.subtotalPrice}, total:${thisCart.totalPrice}`
+    // );
     thisCart.dom.deliveryFee.innerHTML = deliveryFee;
     thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
     for (let totprice of thisCart.dom.totalPrice) {
@@ -136,10 +136,10 @@ class Cart {
     const generatedHTML = templates.cartProduct(menuProduct);
     const generatedDOM = utils.createDOMFromHTML(generatedHTML);
     thisCart.dom.productList.appendChild(generatedDOM);
-    console.log('adding product', menuProduct);
+    // console.log('adding product', menuProduct);
 
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-    console.log('thisCart.products', thisCart.products);
+    // console.log('thisCart.products', thisCart.products);
     thisCart.update();
   }
 
