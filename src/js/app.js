@@ -7,8 +7,38 @@ const app = {
     const thisApp = this;
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
+    thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
     thisApp.activatePage(thisApp.pages[0].id);
+
+    for (let link of thisApp.navLinks) {
+      link.addEventListener('click', function (event) {
+        const ClickedElement = this;
+        event.preventDefault();
+      });
+    }
+  },
+
+  activatePage: function (pageId) {
+    const thisApp = this;
+    /* add class "active" to matching pages, remove from non-matchin */
+
+    for (let page of thisApp.pages) {
+      //   if (page.id == pageId) {
+      //     page.classList.add(classNames.pages.active);
+      //   } else {
+      //     page.classList.remove(classNames.pages.active);
+      //   }
+      // }
+      page.classList.toggle(classNames.pages.active, page.id == pageId);
+    }
+    /* add class "active" to matching links, remove from non-matchin */
+    for (let link of thisApp.navLinks) {
+      link.classList.toggle(
+        classNames.nav.active,
+        link.getAttribute('href') == `#${pageId}`
+      );
+    }
   },
 
   initMenu: function () {
