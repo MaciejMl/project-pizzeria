@@ -96,7 +96,7 @@ class Cart {
         return response.json();
       })
       .then(function (parseResponse) {
-        //  console.log('parseResponse', parseResponse);
+        console.log('parseResponse', parseResponse);
       });
   }
 
