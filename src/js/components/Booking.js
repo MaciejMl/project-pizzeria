@@ -261,7 +261,7 @@ class Booking {
       alert('Table is booked!');
     }
 
-    console.log('selectedTable', thisBooking.selectedTable);
+    // console.log('selectedTable', thisBooking.selectedTable);
   }
 
   numberBookedTable() {
@@ -345,7 +345,7 @@ class Booking {
     payload.phone = thisBooking.dom.phone.value;
     payload.address = thisBooking.dom.address.value;
 
-    console.log(payload);
+    // console.log(payload);
 
     const options = {
       method: 'POST',
@@ -360,7 +360,21 @@ class Booking {
         return response.json();
       })
       .then(function (parseResponse) {
-        console.log('parseResponse', parseResponse);
+        // console.log('parseResponse', parseResponse);
+        if (parseResponse) {
+          thisBooking.makeBooked(
+            parseResponse.date,
+            parseResponse.hour,
+            parseResponse.duration,
+            parseResponse.table
+          );
+        }
+        thisBooking.updateDOM();
+        for (let item of thisBooking.dom.tables) {
+          if (item.classList.contains('selected')) {
+            item.classList.remove('selected');
+          }
+        }
       });
   }
 }
