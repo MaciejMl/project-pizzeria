@@ -243,7 +243,7 @@ class Booking {
     for (let table of thisBooking.dom.tables) {
       if (table.classList.contains(classNames.booking.selected)) {
         table.classList.remove(classNames.booking.selected);
-        this.selectedTable = [];
+        thisBooking.selectedTable = [];
       }
     }
 
@@ -261,7 +261,7 @@ class Booking {
       alert('Table is booked!');
     }
 
-    // console.log('selectedTable', thisBooking.selectedTable);
+    console.log('selectedTable', thisBooking.selectedTable);
   }
 
   numberBookedTable() {
@@ -368,11 +368,13 @@ class Booking {
             parseResponse.duration,
             parseResponse.table
           );
-        }
-        thisBooking.updateDOM();
-        for (let item of thisBooking.dom.tables) {
-          if (item.classList.contains('selected')) {
-            item.classList.remove('selected');
+          thisBooking.updateDOM();
+
+          for (let table of thisBooking.dom.tables) {
+            if (table.classList.contains('selected')) {
+              table.classList.remove('selected');
+              thisBooking.selectedTable = [];
+            }
           }
         }
       });
