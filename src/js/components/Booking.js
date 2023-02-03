@@ -232,6 +232,17 @@ class Booking {
     );
   }
 
+  removeTableSelection() {
+    const thisBooking = this;
+
+    for (let table of thisBooking.dom.tables) {
+      if (table.classList.contains(classNames.booking.selected)) {
+        table.classList.remove(classNames.booking.selected);
+        thisBooking.selectedTable = [];
+      }
+    }
+  }
+
   initTables(event) {
     const thisBooking = this;
     if (event.target.classList.contains(classNames.booking.selected)) {
@@ -240,12 +251,7 @@ class Booking {
       return console.log('reset');
     }
 
-    for (let table of thisBooking.dom.tables) {
-      if (table.classList.contains(classNames.booking.selected)) {
-        table.classList.remove(classNames.booking.selected);
-        thisBooking.selectedTable = [];
-      }
-    }
+    thisBooking.removeTableSelection();
 
     if (
       event.target.classList.contains(classNames.booking.isTable) &&
@@ -369,13 +375,7 @@ class Booking {
             parseResponse.table
           );
           thisBooking.updateDOM();
-
-          for (let table of thisBooking.dom.tables) {
-            if (table.classList.contains('selected')) {
-              table.classList.remove('selected');
-              thisBooking.selectedTable = [];
-            }
-          }
+          thisBooking.removeTableSelection();
         }
       });
   }
