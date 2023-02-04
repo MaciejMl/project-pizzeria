@@ -97,14 +97,33 @@
 
     <script id="template-home-site" type="text/x-handlebars-template">
       <header>
-        <div class='container'>
-          <div class='images'>
-            <img src='./images/home/assets/pizza-1.jpg' alt='order' />
-          </div>
-          <div class='images'>
-            <img src='./images/home/assets/pizza-2.jpg' alt='booking' />
-          </div>
-          <div class='images'>
+        <div class='home-wrapper'>
+          <div class='box-wrapper'>
+
+            <div class='img-wrapper'>
+              <div class='images'>
+                <img src='./images/home/assets/pizza-1.jpg' alt='order' />
+                <div class='links'><h2>order online</h2></div>
+              </div>
+            </div>
+
+            <div class='img-wrapper'>
+              <div class='images'>
+                <img src='./images/home/assets/pizza-2.jpg' alt='booking' />
+                <div class='links'><h2>book a table</h2></div>
+              </div>
+            </div>
+
+            <div id='contBcg'>
+              <div class='images'>
+                <div class='imgCol'></div>
+                <div class='links'>
+                  <h2>opening hours:</h2>
+                  <a href='#'>tue-sun, 12pm - 12am</a>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </header>
