@@ -1,10 +1,12 @@
-import { templates } from '../settings.js';
+import { select, templates } from '../settings.js';
 
 class Home {
   constructor(element) {
     const thisHome = this;
 
     thisHome.render(element);
+    thisHome.carouselInit();
+    thisHome.activatePage();
   }
 
   render(element) {
@@ -15,6 +17,54 @@ class Home {
     thisHome.dom = {};
     thisHome.dom.wrapper = element;
     thisHome.dom.wrapper.innerHTML = homeHTML;
+
+    thisHome.dom.order = thisHome.dom.wrapper.querySelector(
+      select.home.orderLink
+    );
+    thisHome.dom.orderId = document.querySelector(select.home.orderLinkId);
+    thisHome.dom.booking = thisHome.dom.wrapper.querySelector(
+      select.home.bookingLink
+    );
+    thisHome.dom.bookingId = document.querySelector(select.home.bookingLinkId);
+    thisHome.dom.homeId = document.querySelector(select.home.homeLinkId);
+
+    thisHome.dom.homePage = document.querySelector(select.home.homePage);
+    thisHome.dom.orderPage = document.querySelector(select.home.orderPage);
+    thisHome.dom.bookingPage = document.querySelector(select.home.bookingPage);
+  }
+
+  activatePage() {
+    const thisHome = this;
+
+    thisHome.dom.order.addEventListener('click', function (event) {
+      event.preventDefault();
+      thisHome.dom.orderId.classList.add('active');
+      thisHome.dom.orderPage.classList.add('active');
+      thisHome.dom.homeId.classList.remove('active');
+      thisHome.dom.homePage.classList.remove('active');
+    });
+
+    thisHome.dom.booking.addEventListener('click', function (event) {
+      event.preventDefault();
+      thisHome.dom.bookingId.classList.add('active');
+      thisHome.dom.bookingPage.classList.add('active');
+      thisHome.dom.homeId.classList.remove('active');
+      thisHome.dom.homePage.classList.remove('active');
+    });
+  }
+
+  carouselInit() {
+    const elem = document.querySelector('.main-carousel');
+    /* eslint-disable no-unused-vars */
+    /* eslint-disable-next-line no-undef */
+    let flkty = new Flickity(elem, {
+      cellAlign: 'left',
+      contain: true,
+      wrapAround: true,
+      autoPlay: true,
+      imagesLoaded: true,
+      prevNextButtons: false,
+    });
   }
 }
 

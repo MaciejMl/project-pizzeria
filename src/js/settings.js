@@ -76,6 +76,16 @@ export const select = {
     edit: '[href="#edit"]',
     remove: '[href="#remove"]',
   },
+  home: {
+    orderLink: '#orderM',
+    orderLinkId: 'a[href="#order"]',
+    bookingLink: '#bookT',
+    bookingLinkId: 'a[href="#booking"]',
+    homeLinkId: '#home-nav',
+    homePage: '#home',
+    orderPage: '#order',
+    bookingPage: '#booking',
+  },
 };
 
 export const classNames = {
