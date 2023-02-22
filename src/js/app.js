@@ -48,12 +48,6 @@ const app = {
     /* add class "active" to matching pages, remove from non-matchin */
 
     for (let page of thisApp.pages) {
-      //   if (page.id == pageId) {
-      //     page.classList.add(classNames.pages.active);
-      //   } else {
-      //     page.classList.remove(classNames.pages.active);
-      //   }
-      // }
       page.classList.toggle(classNames.pages.active, page.id == pageId);
     }
     /* add class "active" to matching links, remove from non-matchin */

@@ -38,6 +38,11 @@ class Home {
 
     thisHome.dom.order.addEventListener('click', function (event) {
       event.preventDefault();
+      const ClickedElement = this;
+
+      const id = ClickedElement.getAttribute('href').replace('#', '');
+      window.location.hash = `#/${id}`;
+
       thisHome.dom.orderId.classList.add('active');
       thisHome.dom.orderPage.classList.add('active');
       thisHome.dom.homeId.classList.remove('active');
@@ -46,6 +51,11 @@ class Home {
 
     thisHome.dom.booking.addEventListener('click', function (event) {
       event.preventDefault();
+      const ClickedElement = this;
+
+      const id = ClickedElement.getAttribute('href').replace('#', '');
+      window.location.hash = `#/${id}`;
+
       thisHome.dom.bookingId.classList.add('active');
       thisHome.dom.bookingPage.classList.add('active');
       thisHome.dom.homeId.classList.remove('active');
