@@ -38,9 +38,9 @@ class Home {
 
     thisHome.dom.order.addEventListener('click', function (event) {
       event.preventDefault();
-      const ClickedElement = this;
+      const clickedElement = this;
 
-      const id = ClickedElement.getAttribute('href').replace('#', '');
+      const id = clickedElement.getAttribute('id').replace('M', '');
       window.location.hash = `#/${id}`;
 
       thisHome.dom.orderId.classList.add('active');
@@ -51,9 +51,9 @@ class Home {
 
     thisHome.dom.booking.addEventListener('click', function (event) {
       event.preventDefault();
-      const ClickedElement = this;
+      const clickedElement = this;
 
-      const id = ClickedElement.getAttribute('href').replace('#', '');
+      const id = clickedElement.getAttribute('id').replace('T', 'ing');
       window.location.hash = `#/${id}`;
 
       thisHome.dom.bookingId.classList.add('active');
