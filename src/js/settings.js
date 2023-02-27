@@ -79,12 +79,12 @@ export const select = {
   home: {
     orderLink: '#orderM',
     orderLinkId: 'a[href="#order"]',
+    orderPage: '#order',
     bookingLink: '#bookT',
     bookingLinkId: 'a[href="#booking"]',
+    bookingPage: '#booking',
     homeLinkId: '#home-nav',
     homePage: '#home',
-    orderPage: '#order',
-    bookingPage: '#booking',
   },
 };
 

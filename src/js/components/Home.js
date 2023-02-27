@@ -22,15 +22,15 @@ class Home {
       select.home.orderLink
     );
     thisHome.dom.orderId = document.querySelector(select.home.orderLinkId);
+    thisHome.dom.orderPage = document.querySelector(select.home.orderPage);
     thisHome.dom.booking = thisHome.dom.wrapper.querySelector(
       select.home.bookingLink
     );
     thisHome.dom.bookingId = document.querySelector(select.home.bookingLinkId);
-    thisHome.dom.homeId = document.querySelector(select.home.homeLinkId);
-
-    thisHome.dom.homePage = document.querySelector(select.home.homePage);
-    thisHome.dom.orderPage = document.querySelector(select.home.orderPage);
     thisHome.dom.bookingPage = document.querySelector(select.home.bookingPage);
+
+    thisHome.dom.homeId = document.querySelector(select.home.homeLinkId);
+    thisHome.dom.homePage = document.querySelector(select.home.homePage);
   }
 
   activatePage() {
@@ -40,7 +40,8 @@ class Home {
       event.preventDefault();
       const clickedElement = this;
 
-      const id = clickedElement.getAttribute('id').replace('M', '');
+      console.log(clickedElement);
+      const id = clickedElement.getAttribute('href').replace('#', '');
       window.location.hash = `#/${id}`;
 
       thisHome.dom.orderId.classList.add('active');
@@ -53,7 +54,7 @@ class Home {
       event.preventDefault();
       const clickedElement = this;
 
-      const id = clickedElement.getAttribute('id').replace('T', 'ing');
+      const id = clickedElement.getAttribute('href').replace('#', '');
       window.location.hash = `#/${id}`;
 
       thisHome.dom.bookingId.classList.add('active');
